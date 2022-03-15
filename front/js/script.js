@@ -8,14 +8,39 @@ fetch('http://localhost:3000/api/products')
     const html = products
     .map(products => {
         return `
-        <div>
-        <p><img src=${products.imageUrl} alt=${products.altTxt} width="250px" height="200px" </p>
-        <p>${products.description}</p>
-        <p>${products.imageUrl}</p>
-        <p>${products.name}</p>
-        <p>${products.price} €</p>
-        <p>${products.id}</p>
-        </div>
+        <main class="limitedWidthBlockContainer">
+            <div class="limitedWidthBlock">
+                <section class="item" id="items">
+
+                <a href="./product.html?id=${products._id}&price=${products.price}">
+                    <article>
+
+                   
+                        <div class="item__img">
+                            <img  src=${products.imageUrl} alt=${products.altTxt}>
+                        </div>
+
+                        <div class="item__content">
+                            <div class="item__content__titlePrice">
+                                <h1 id"title">${products.name}</h1>
+                                <p>Prix : <span id="price">${products.price}</span>€</p>
+                            </div>
+
+                            <div class="item__content__description">
+                                <p class="item__content__description__title">Description:</p>
+                                <p id="description">${products.description}</p>
+                            </div>
+                            
+                            
+
+
+
+                        </div>
+                    </article>
+                    </a>
+                </section>
+            </div>
+        </main>
         `;
     }).join('');
     document.querySelector('.items').insertAdjacentHTML('afterbegin', html);
@@ -30,7 +55,29 @@ fetch('http://localhost:3000/api/products')
 
 
 
+    /* console.log(window.localStorage);
+ */
+    /* let params = new URLSearchParams(document.location.search);
+    let name = params.get("name"); 
+    let id = params.get("id"); 
+    
+    console.log(params);
+    console.log('name');
+    
+
    
+    const queryString = window.location.search;
+
+const urlParams = new URLSearchParams(queryString);
+
+const names = urlParams.get('names')
+
+console.log(names); */
+ 
+
+
+
+
 
     
 
