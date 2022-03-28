@@ -11,32 +11,12 @@ fetch('http://localhost:3000/api/products')
         <main class="limitedWidthBlockContainer">
             <div class="limitedWidthBlock">
                 <section class="item" id="items">
-
-                <a href="./product.html?id=${products._id}&price=${products.price}">
-                    <article>
-
-                   
-                        <div class="item__img">
+                    <a href="./product.html?id=${products._id}">
+                        <article>
                             <img  src=${products.imageUrl} alt=${products.altTxt}>
-                        </div>
-
-                        <div class="item__content">
-                            <div class="item__content__titlePrice">
-                                <h1 id"title">${products.name}</h1>
-                                <p>Prix : <span id="price">${products.price}</span>€</p>
-                            </div>
-
-                            <div class="item__content__description">
-                                <p class="item__content__description__title">Description:</p>
-                                <p id="description">${products.description}</p>
-                            </div>
-                            
-                            
-
-
-
-                        </div>
-                    </article>
+                            <h3 id"title">${products.name}</h3>
+                            <p class="productDescription">${products.description}</p>
+                        </article>
                     </a>
                 </section>
             </div>
@@ -154,3 +134,7 @@ const options = {
     };
 
     getProducts(); */
+
+
+
+  
