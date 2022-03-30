@@ -74,7 +74,7 @@ fetch(api + productId)
   function createCard(object) {
 
     //function for getting image
-    function imageSofa() {
+ /*    function imageSofa() {
       var frame = document.querySelector('.item__img');
       var img = document.createElement("IMG");
       img.src = ` ../images/logo.png`;
@@ -82,7 +82,11 @@ fetch(api + productId)
       frame.appendChild(img);
     }
     
-    imageSofa(); 
+    imageSofa();  */
+    let productImg = document.createElement("img");
+    document.querySelector(".item__img").appendChild(productImg);
+    productImg.src = object.imageUrl;
+    productImg.alt = object.altTxt;
 
 
     let name = document.getElementById('title');
@@ -112,19 +116,6 @@ fetch(api + productId)
   }
 
   };
-
-
-
-
-
-  
-
-
-
-
-
-
-
 
 
 
