@@ -141,3 +141,19 @@ if (productLocalStorage === null || productLocalStorage == 0) {
     });
 
 console.log(totalQuantity)
+
+
+// displaying the total Price of each article
+
+
+let productTotalPrice = document.getElementById('totalPrice');
+let totalPrice = 0;
+
+
+productLocalStorage.forEach(element => {
+
+totalPrice += element.priceItem * element.quantityItem
+productTotalPrice.innerHTML = totalPrice
+})
+
+console.log(totalPrice)
