@@ -52,5 +52,81 @@ let addToCartButton = document.getElementById("addToCart");
 addToCartButton.addEventListener("click", addToCart);
 
 function addToCart() {
-    
+    if (quantityChoice.value > 0 && quantityChoice.value <=100 && quantityChoice.value != 0 && colorSelection.value != 0) {  // get key (here:cart from the local storage) -> retrieve the data
+        if (localStorage.getItem("cart")) {
+
+            // parse cart-string back to an object
+            let productCart = JSON.parse(localStorage.getItem("cart"));
+            // shows all products in array form - add one after each new one
+            console.log(productCart);
+
+            let idSofa = idProduct;
+            let colorItem = document.querySelector("#colors").value;
+            let quantityItem = document.querySelector("#quantity").value;
+            let nameItem = document.querySelector("#title").textContent;
+
+            //returns the value of the first element
+             const productFind = productCart.find((element) =>
+                  element.idSofa === idProduct &&  element.colorItem === colorItem);
+
+                //SIf the product ordered is already in the basket
+               /*  console.log("result find is equivalent to:");
+                console.log(productFind); */
+
+                if (productFind) {
+                  // logs out the number of articles that were ordered before adding to cart
+
+                  console.log("result find is equivalent to:");
+                  console.log(productFind);
+
+                    console.log("Old amount of " + nameItem + " " + productFind.quantityItem);
+                    // logs out the number of articles of that order
+                    console.log(  quantityItem + " new Sofa(s) added");
+                    //  parses the value as a string and returns the first integer
+                    let newQuantity = parseInt(quantityItem) + parseInt(productFind.quantityItem);
+                    // logs out the new total qty
+                    console.log("New quantity " + nameItem + "of: " + newQuantity);
+                    productFind.quantityItem = newQuantity;
+                    localStorage.setItem("cart", JSON.stringify(productCart));
+                    console.log("Cart articles :");
+                     // shows all products in array form - add one after each new one
+                    console.log(productCart);
+
+                //If the product ordered is not in the basket
+                } else {
+
+                    let productCart = JSON.parse(localStorage.getItem("cart"));
+
+                    let idSofa = idProduct;
+                    let imgItem = img.src;
+                    let altImg = img.alt;
+                    let nameItem = document.querySelector("#title").textContent;
+                    let colorItem = document.querySelector("#colors").value;
+                    let quantityItem = document.querySelector("#quantity").value;
+                    
+                    let priceItem = document.querySelector("#price").textContent;
+
+                   
+                    console.log(nameItem, colorItem, quantityItem + "new Sofas for each", priceItem + " €");
+
+                    let productCartArticle = {
+                        idSofa : idProduct,
+                        imgItem : imgItem,
+                        altImg : altImg,
+                        nameItem : nameItem,
+                        colorItem : colorItem,
+                        quantityItem  : quantityItem,
+                        priceItem : priceItem
+                    };
+
+                    productCart.push(productCartArticle);
+
+                    let cartInLocalStorage = JSON.stringify(productCart);
+                    localStorage.setItem("cart", cartInLocalStorage);
+
+                    alert("Article added to cart!");
+                }
+
+        }
+    }
 };
