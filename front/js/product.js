@@ -52,7 +52,13 @@ let addToCartButton = document.getElementById("addToCart");
 addToCartButton.addEventListener("click", addToCart);
 
 function addToCart() {
-    if (quantityChoice.value > 0 && quantityChoice.value <=100 && quantityChoice.value != 0 && colorSelection.value != 0) {  // get key (here:cart from the local storage) -> retrieve the data
+
+    const colorSelection = document. querySelector("#colors");
+    const quantityChoice = document.querySelector("#quantity");
+
+    if (quantityChoice.value > 0 && quantityChoice.value <=100 && quantityChoice.value != 0 && colorSelection.value != 0) {
+
+          // get key (here:cart from the local storage) -> retrieve the data
         if (localStorage.getItem("cart")) {
 
             // parse cart-string back to an object
@@ -69,7 +75,7 @@ function addToCart() {
              const productFind = productCart.find((element) =>
                   element.idSofa === idProduct &&  element.colorItem === colorItem);
 
-                //SIf the product ordered is already in the basket
+                //SIf the product ordered is already in the basketget
                /*  console.log("result find is equivalent to:");
                 console.log(productFind); */
 
@@ -103,10 +109,10 @@ function addToCart() {
                     let nameItem = document.querySelector("#title").textContent;
                     let colorItem = document.querySelector("#colors").value;
                     let quantityItem = document.querySelector("#quantity").value;
-                    
+
                     let priceItem = document.querySelector("#price").textContent;
 
-                   
+
                     console.log(nameItem, colorItem, quantityItem + "new Sofas for each", priceItem + " €");
 
                     let productCartArticle = {
@@ -125,47 +131,47 @@ function addToCart() {
                     localStorage.setItem("cart", cartInLocalStorage);
 
                     alert("Article added to cart!");
-                }else {
-
-                    let productCart = [];
-        
-                    let idSofa = idProduct;
-                    let imgItem = img.src;
-                    let altImg = img.alt;
-                    let nameItem = document.querySelector("#title").textContent;
-                    let colorItem = document.querySelector("#colors").value;
-                    let quantityItem = document.querySelector("#quantity").value;
-                    let priceItem = document.querySelector("#price").textContent;
-        
-        
-                    // when purchasing the first time - console log this
-                    console.log(nameItem, colorItem, quantityItem, priceItem + " €");
-        
-                    let productCartArticle = {
-                        idSofa : idProduct,
-                        imgItem : imgItem,
-                        altImg : altImg,
-                        nameItem : nameItem,
-                        colorItem : colorItem,
-                        quantityItem  : quantityItem,
-                        priceItem : priceItem
-                    };
-        
-                    // push to the []
-                    productCart.push(productCartArticle);
-        
-        
-        
-                    let cartInLocalStorage = JSON.stringify(productCart);
-                    //saving the cart data from the product in the local storage
-                    localStorage.setItem("cart", cartInLocalStorage);
-        
-        
-                    //localStorage.setItem("cart", JSON.stringify(productCart));
-        
-                    alert("First article added to cart!");
                 }
 
+        } else {
+
+            let productCart = [];
+
+            let idSofa = idProduct;
+            let imgItem = img.src;
+            let altImg = img.alt;
+            let nameItem = document.querySelector("#title").textContent;
+            let colorItem = document.querySelector("#colors").value;
+            let quantityItem = document.querySelector("#quantity").value;
+            let priceItem = document.querySelector("#price").textContent;
+
+
+            // when purchasing the first time - console log this
+            console.log(nameItem, colorItem, quantityItem, priceItem + " €");
+
+            let productCartArticle = {
+                idSofa : idProduct,
+                imgItem : imgItem,
+                altImg : altImg,
+                nameItem : nameItem,
+                colorItem : colorItem,
+                quantityItem  : quantityItem,
+                priceItem : priceItem
+            };
+
+            // push to the []
+            productCart.push(productCartArticle);
+
+
+
+            let cartInLocalStorage = JSON.stringify(productCart);
+            //saving the cart data from the product in the local storage
+            localStorage.setItem("cart", cartInLocalStorage);
+
+
+            //localStorage.setItem("cart", JSON.stringify(productCart));
+
+            alert("First article added to cart!");
         }
     }
 };
