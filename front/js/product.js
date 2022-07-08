@@ -125,6 +125,45 @@ function addToCart() {
                     localStorage.setItem("cart", cartInLocalStorage);
 
                     alert("Article added to cart!");
+                }else {
+
+                    let productCart = [];
+        
+                    let idSofa = idProduct;
+                    let imgItem = img.src;
+                    let altImg = img.alt;
+                    let nameItem = document.querySelector("#title").textContent;
+                    let colorItem = document.querySelector("#colors").value;
+                    let quantityItem = document.querySelector("#quantity").value;
+                    let priceItem = document.querySelector("#price").textContent;
+        
+        
+                    // when purchasing the first time - console log this
+                    console.log(nameItem, colorItem, quantityItem, priceItem + " €");
+        
+                    let productCartArticle = {
+                        idSofa : idProduct,
+                        imgItem : imgItem,
+                        altImg : altImg,
+                        nameItem : nameItem,
+                        colorItem : colorItem,
+                        quantityItem  : quantityItem,
+                        priceItem : priceItem
+                    };
+        
+                    // push to the []
+                    productCart.push(productCartArticle);
+        
+        
+        
+                    let cartInLocalStorage = JSON.stringify(productCart);
+                    //saving the cart data from the product in the local storage
+                    localStorage.setItem("cart", cartInLocalStorage);
+        
+        
+                    //localStorage.setItem("cart", JSON.stringify(productCart));
+        
+                    alert("First article added to cart!");
                 }
 
         }
