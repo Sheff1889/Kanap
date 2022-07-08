@@ -3,80 +3,80 @@ let productLocalStorage = JSON.parse(localStorage.getItem("cart"));
 
 if (productLocalStorage === null || productLocalStorage == 0) {
 
-    // cart is empty 
- 
+    // cart is empty
+
  } else {
- 
+
      for (let i=0; i < productLocalStorage.length; i++) {
- 
+
          // Creation of the "article" tag and insertion in the section
          let productArticle = document.createElement("article");
          document.querySelector("#cart__items").appendChild(productArticle);
          productArticle.className = "cart__item";
          productArticle.setAttribute("data-id", productLocalStorage[i].idSofa);
- 
- 
+
+
          console.log(productArticle)
- 
+
          // Inserting the "div" element for the product image
          let productDivImg = document.createElement("div");
          productArticle.appendChild(productDivImg);
          productDivImg.className = "cart__item__img";
- 
+
          console.log(productDivImg)
- 
+
          // Insertion de l'image
          // [i] = whichever element in the loop that we are in
           let productImg = document.createElement("img");
          productDivImg.appendChild(productImg);
          productImg.src = productLocalStorage[i].imgItem;
          productImg.alt = productLocalStorage[i].altImg;
- 
- 
+
+
          // Inserting the "div" element for the product description
          let productItemContent = document.createElement("div");
          productArticle.appendChild(productItemContent);
          productItemContent.className = "cart__item__content";
- 
+
          // Inserting the "div" element
          let productItemContentTitlePrice = document.createElement("div");
          productItemContent.appendChild(productItemContentTitlePrice);
          productItemContentTitlePrice.className = "cart__item__content__titlePrice";
- 
+
          // IInserting the h2 title
          let productTitle = document.createElement("h2");
          productItemContentTitlePrice.appendChild(productTitle);
          productTitle.innerHTML = productLocalStorage[i].nameItem;
          productTitle.style.fontSize = "2em"
- 
+
          // Inserting the color
          let productColor = document.createElement("p");
          productTitle.appendChild(productColor);
          productColor.innerHTML = productLocalStorage[i].colorItem;
          productColor.style.fontSize = ".6em";
- 
+
          // Insertion of the price
          let productPrice = document.createElement("p");
          productItemContentTitlePrice.appendChild(productPrice);
          productPrice.innerHTML = productLocalStorage[i].priceItem + " €";
- 
+
          // Inserting the "div" element
          let productItemContentSettings = document.createElement("div");
          productItemContent.appendChild(productItemContentSettings);
          productItemContentSettings.className = "cart__item__content__settings";
- 
+
          // Inserting the "div" element
          let productItemContentSettingsQuantity = document.createElement("div");
          productItemContentSettings.appendChild(productItemContentSettingsQuantity);
          productItemContentSettingsQuantity.className = "cart__item__content__settings__quantity";
- 
+
          // Inserting the quantity
          let productQuantity = document.createElement("p");
          productItemContentSettingsQuantity.appendChild(productQuantity);
          productQuantity.innerHTML = "Quantity: ";
- 
+
          // Inserting the quantity
- 
+
          let quantityInput = document.createElement("input");
          productItemContentSettingsQuantity.appendChild(quantityInput);
          quantityInput.type = "number";
@@ -161,25 +161,25 @@ console.log(totalPrice)
 
 function newArticleQuantity() {
     let updatedQuantity = document.querySelectorAll(".itemQuantity");
-  
+
     for (let i= 0; i < updatedQuantity.length; i++){
         updatedQuantity[i].addEventListener("change" , (event) => {
             event.preventDefault();
-  
+
             //Selection of the element to be modified according to its id and its color
-           
+
             let newArticleQuantity = productLocalStorage[i].quantityItem;
             let newQuantityValue = updatedQuantity[i].value;
-            
+
             const resultFind = productLocalStorage.find((el) => el.newQuantityValue !== newArticleQuantity );
-  
+
             resultFind.quantityItem = newQuantityValue;
             productLocalStorage[i].quantityItem = resultFind.quantityItem;
-  
+
             localStorage.setItem("cart", JSON.stringify(productLocalStorage));
-          
-  
-            
+
+
+
             // quick reload
             location.reload();
         })
@@ -190,34 +190,34 @@ function newArticleQuantity() {
 
   /* filling out the form  */
 function getForm() {
-  
+
     let firstName = document.getElementById('firstName')
     let lastName = document.getElementById('lastName')
     let address = document.getElementById('address')
     let city = document.getElementById('city')
     let email = document.getElementById('email')
-    
 
 
-   
-    
+
+
+
     firstName.addEventListener ("input", validateFirstName)
-    
+
     function validateFirstName() {
-    
+
         const regEx_FirstName = /^[a-zA-Z]{2,}$/;
-    
+
         if(regEx_FirstName.test(firstName.value) == false ||  firstName.value == "") {
-    
-    
+
+
                 document.getElementById("firstNameErrorMsg").innerHTML = "Your first name is not valid";
                 order.setAttribute("disabled", true);
                 order.style.cursor = "not-allowed";
                 console.log('false')
-                
+
                 return false;
         } else {
-    
+
             document.getElementById("firstNameErrorMsg").innerHTML = "";
            // order.setAttribute("disabled", false);
                 order.style.cursor = "pointer";
@@ -226,23 +226,23 @@ function getForm() {
             return true;
         }
     }
-    
-    
-    
-    
+
+
+
+
     lastName.addEventListener ("input", validateLastName)
     function validateLastName() {
         const regEx_LastName = /^[a-zA-Z]{2,20}$/;
-    
+
         if(regEx_LastName.test(lastName.value) == false || lastName.value == ""){
-    
+
                 document.getElementById("lastNameErrorMsg").innerHTML = "Your last name is not valid";
                 order.setAttribute("disabled", true);
                 order.style.cursor = "not-allowed";
                 console.log('false')
                 return false;
         } else {
-    
+
             document.getElementById("lastNameErrorMsg").innerHTML = "";
             order.style.cursor = "pointer";
                 order.disabled = false;
@@ -250,24 +250,24 @@ function getForm() {
             return true;
         }
     }
-    
-    
-    
-    
+
+
+
+
     address.addEventListener ("input", validateAddress)
     function validateAddress() {
         const regEx_Address = /^[#.0-9a-zA-Z\s,-]+$/;
-    
+
         if(regEx_Address.test(address.value) == false || address.value == ""){
-    
-    
+
+
                 document.getElementById("addressErrorMsg").innerHTML = "Your address is not valid";
                 order.setAttribute("disabled", true);
                 order.style.cursor = "not-allowed";
                 console.log('false')
                 return false;
         } else {
-    
+
             document.getElementById("addressErrorMsg").innerHTML = "";
             order.style.cursor = "pointer";
                 order.disabled = false;
@@ -275,24 +275,24 @@ function getForm() {
             return true;
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     city.addEventListener ("input", validateCity)
     function validateCity() {
         const regEx_City = /^[#.0-9a-zA-Z\s,-]+$/;
-    
+
         if(regEx_City.test(city.value)  == false || city.value == "" ){
-    
+
                 document.getElementById("cityErrorMsg").innerHTML = "Your city is not valid";
                 order.setAttribute("disabled", true);
                 order.style.cursor = "not-allowed";
                 console.log('false')
                 return false;
         } else {
-    
+
             document.getElementById("cityErrorMsg").innerHTML = "";
             order.style.cursor = "pointer";
                 order.disabled = false;
@@ -300,24 +300,24 @@ function getForm() {
             return true;
         }
     }
-    
-    
-    
-    
+
+
+
+
     email.addEventListener ("input", validateEmail)
     function validateEmail() {
         const regEx_Email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    
+
         if(regEx_Email.test(email.value) == false || email.value === ""){
-            
-            
+
+
                 document.getElementById("emailErrorMsg").innerHTML = "Your email is not valid";
                 order.setAttribute("disabled", true);
                 order.style.cursor = "not-allowed";
                 console.log('false')
                 return false;
         } else {
-            
+
             document.getElementById("emailErrorMsg").innerHTML  = "";
             order.style.cursor = "pointer";
                 order.disabled = false;
@@ -325,7 +325,7 @@ function getForm() {
             return true;
         }
     }
-    
+
 
  }
     getForm();
@@ -339,7 +339,7 @@ function disableOrder() {
   if (!productLocalStorage || productLocalStorage.length === 0) {
     order.setAttribute("disabled", true);
     order.style.cursor = "not-allowed";
-  } 
+  }
 }
 
 
@@ -347,7 +347,7 @@ let order = document.getElementById("order");
 //console.log(order)
 order.addEventListener("click", (e) => {
   e.preventDefault();
- 
+
 
   if (
     firstName.value === "" ||
@@ -364,13 +364,13 @@ order.addEventListener("click", (e) => {
     validateAddress() == false ||
     validateEmail() == false ||
     validateCity() == false
- 
-    
+
+
   ) {
     alert("Please fill in your details correctly, please return to the cart form page!!");
     return false
-    } 
-    
+    }
+
   })
 
 
@@ -394,13 +394,33 @@ order.addEventListener("click", (e) => {
         products.push(productLocalStorage[i].idSofa);
     }
     console.log(products);
-  
-    // put the selected contact and product data into and object 
-   
+
+    // put the selected contact and product data into and object
+
     const postFormData = {
       contact,
       products,
     }
 
-}); 
+    // send the form + localStorage (postFormData)
+    // ... sending it to the server
+
+    const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(postFormData),
+
+      };
+
+       fetch("http://localhost:3000/api/products/order", options)
+          .then(response => response.json())
+          .then(data => {
+          localStorage.clear()
+          document.location.href = 'confirmation.html?id='+ data.orderId;
+        })
+        .catch((error) => {
+          console.error(error);
+         });
+});
 }
+postForm();
