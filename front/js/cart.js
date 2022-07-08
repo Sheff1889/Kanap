@@ -341,3 +341,34 @@ function disableOrder() {
     order.style.cursor = "not-allowed";
   } 
 }
+
+
+let order = document.getElementById("order");
+//console.log(order)
+order.addEventListener("click", (e) => {
+  e.preventDefault();
+ 
+
+  if (
+    firstName.value === "" ||
+    lastName.value === "" ||
+    address.value === "" ||
+    city.value === "" ||
+    email.value === ""
+  ) {
+    alert("You need to fill in your details for the order, please return to the cart form page!");
+    return false
+  } else if (
+    validateFirstName() == false ||
+    validateLastName() == false ||
+    validateAddress() == false ||
+    validateEmail() == false ||
+    validateCity() == false
+ 
+    
+  ) {
+    alert("Please fill in your details correctly, please return to the cart form page!!");
+    return false
+    } 
+    
+  })
