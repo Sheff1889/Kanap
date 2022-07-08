@@ -372,3 +372,35 @@ order.addEventListener("click", (e) => {
     } 
     
   })
+
+
+  function postForm() {
+    const order = document.getElementById('order');
+    order.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // get the data from the form into an object
+    const contact = {
+    firstName: firstName.value,
+    lastName: lastName.value,
+    address: address.value,
+    city: city.value,
+    email: email.value,
+    }
+
+    //Building an id array from local storage
+    let products = [];
+    for (let i = 0; i < productLocalStorage.length; i++) {
+        products.push(productLocalStorage[i].idSofa);
+    }
+    console.log(products);
+  
+    // put the selected contact and product data into and object 
+   
+    const postFormData = {
+      contact,
+      products,
+    }
+
+}); 
+}
