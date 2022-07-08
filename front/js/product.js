@@ -46,3 +46,11 @@ async function getProductArticle() {
   console.error(error);
  });
 }
+
+// adding an article to the cart
+let addToCartButton = document.getElementById("addToCart");
+addToCartButton.addEventListener("click", addToCart);
+
+function addToCart() {
+    
+};
