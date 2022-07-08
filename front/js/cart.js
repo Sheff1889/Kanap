@@ -86,6 +86,44 @@ if (productLocalStorage === null || productLocalStorage == 0) {
          quantityInput.max = "100";
          quantityInput.value = productLocalStorage[i].quantityItem;
 
+         // Inserting the "div" element
+        let productItemContentSettingsDelete = document.createElement("div");
+        productItemContentSettings.appendChild(productItemContentSettingsDelete);
+        productItemContentSettingsDelete.className = "cart__item__content__settings__delete";
+
+        // Insertion of "p" delete
+        let productDelete = document.createElement("p");
+        productItemContentSettingsDelete.appendChild(productDelete);
+        productDelete.className = "deleteItem";
+        productDelete.innerHTML = "Delete Article";
+        productDelete.addEventListener("click", (event) => {
+            event.preventDefault;
+
+             // save the selected id and color with the delete button
+             let deleteId = productLocalStorage[i].idSofa;
+            let deleteColor = productLocalStorage[i].colorItem;
+
+            // filter the item clicked by the delete button
+            productLocalStorage = productLocalStorage.filter( value => {
+                return  value.idSofa !== deleteId || value.colorItem !== deleteColor
+            } );
+            if (totalQuantity.innerHTML == "0") {
+                localStorage.removeItem("product");
+                cartItems.innerHTML = "Cart is empty";
+              }
+              //If all items have been deleted, disable order button
+              disableOrder();
+
+            // send the new data to the localStorage
+            localStorage.setItem('cart', JSON.stringify(productLocalStorage));
+
+
+            // notify of the deletion and reload the page
+            alert('Your article was cancelled');
+
+            location.reload();
+        });
+
 
      }
     }
