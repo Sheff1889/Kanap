@@ -157,3 +157,32 @@ productTotalPrice.innerHTML = totalPrice
 })
 
 console.log(totalPrice)
+
+
+function newArticleQuantity() {
+    let updatedQuantity = document.querySelectorAll(".itemQuantity");
+  
+    for (let i= 0; i < updatedQuantity.length; i++){
+        updatedQuantity[i].addEventListener("change" , (event) => {
+            event.preventDefault();
+  
+            //Selection of the element to be modified according to its id and its color
+           
+            let newArticleQuantity = productLocalStorage[i].quantityItem;
+            let newQuantityValue = updatedQuantity[i].value;
+            
+            const resultFind = productLocalStorage.find((el) => el.newQuantityValue !== newArticleQuantity );
+  
+            resultFind.quantityItem = newQuantityValue;
+            productLocalStorage[i].quantityItem = resultFind.quantityItem;
+  
+            localStorage.setItem("cart", JSON.stringify(productLocalStorage));
+          
+  
+            
+            // quick reload
+            location.reload();
+        })
+    }
+  }
+  newArticleQuantity(); 
