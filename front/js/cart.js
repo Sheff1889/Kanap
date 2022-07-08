@@ -185,4 +185,147 @@ function newArticleQuantity() {
         })
     }
   }
-  newArticleQuantity(); 
+  newArticleQuantity();
+
+
+  /* filling out the form  */
+function getForm() {
+  
+    let firstName = document.getElementById('firstName')
+    let lastName = document.getElementById('lastName')
+    let address = document.getElementById('address')
+    let city = document.getElementById('city')
+    let email = document.getElementById('email')
+    
+
+
+   
+    
+    firstName.addEventListener ("input", validateFirstName)
+    
+    function validateFirstName() {
+    
+        const regEx_FirstName = /^[a-zA-Z]{2,}$/;
+    
+        if(regEx_FirstName.test(firstName.value) == false ||  firstName.value == "") {
+    
+    
+                document.getElementById("firstNameErrorMsg").innerHTML = "Your first name is not valid";
+                order.setAttribute("disabled", true);
+                order.style.cursor = "not-allowed";
+                console.log('false')
+                
+                return false;
+        } else {
+    
+            document.getElementById("firstNameErrorMsg").innerHTML = "";
+           // order.setAttribute("disabled", false);
+                order.style.cursor = "pointer";
+                order.disabled = false;
+            console.log('ok')
+            return true;
+        }
+    }
+    
+    
+    
+    
+    lastName.addEventListener ("input", validateLastName)
+    function validateLastName() {
+        const regEx_LastName = /^[a-zA-Z]{2,20}$/;
+    
+        if(regEx_LastName.test(lastName.value) == false || lastName.value == ""){
+    
+                document.getElementById("lastNameErrorMsg").innerHTML = "Your last name is not valid";
+                order.setAttribute("disabled", true);
+                order.style.cursor = "not-allowed";
+                console.log('false')
+                return false;
+        } else {
+    
+            document.getElementById("lastNameErrorMsg").innerHTML = "";
+            order.style.cursor = "pointer";
+                order.disabled = false;
+            console.log('ok')
+            return true;
+        }
+    }
+    
+    
+    
+    
+    address.addEventListener ("input", validateAddress)
+    function validateAddress() {
+        const regEx_Address = /^[#.0-9a-zA-Z\s,-]+$/;
+    
+        if(regEx_Address.test(address.value) == false || address.value == ""){
+    
+    
+                document.getElementById("addressErrorMsg").innerHTML = "Your address is not valid";
+                order.setAttribute("disabled", true);
+                order.style.cursor = "not-allowed";
+                console.log('false')
+                return false;
+        } else {
+    
+            document.getElementById("addressErrorMsg").innerHTML = "";
+            order.style.cursor = "pointer";
+                order.disabled = false;
+            console.log('ok')
+            return true;
+        }
+    }
+    
+    
+    
+    
+    
+    city.addEventListener ("input", validateCity)
+    function validateCity() {
+        const regEx_City = /^[#.0-9a-zA-Z\s,-]+$/;
+    
+        if(regEx_City.test(city.value)  == false || city.value == "" ){
+    
+                document.getElementById("cityErrorMsg").innerHTML = "Your city is not valid";
+                order.setAttribute("disabled", true);
+                order.style.cursor = "not-allowed";
+                console.log('false')
+                return false;
+        } else {
+    
+            document.getElementById("cityErrorMsg").innerHTML = "";
+            order.style.cursor = "pointer";
+                order.disabled = false;
+            console.log('ok')
+            return true;
+        }
+    }
+    
+    
+    
+    
+    email.addEventListener ("input", validateEmail)
+    function validateEmail() {
+        const regEx_Email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    
+        if(regEx_Email.test(email.value) == false || email.value === ""){
+            
+            
+                document.getElementById("emailErrorMsg").innerHTML = "Your email is not valid";
+                order.setAttribute("disabled", true);
+                order.style.cursor = "not-allowed";
+                console.log('false')
+                return false;
+        } else {
+            
+            document.getElementById("emailErrorMsg").innerHTML  = "";
+            order.style.cursor = "pointer";
+                order.disabled = false;
+            console.log('ok')
+            return true;
+        }
+    }
+    
+
+ }
+    getForm();
