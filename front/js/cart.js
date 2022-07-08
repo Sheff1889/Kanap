@@ -127,3 +127,17 @@ if (productLocalStorage === null || productLocalStorage == 0) {
 
      }
     }
+
+
+    // modifying the total article
+
+    let articleQuantity = document.getElementById('totalQuantity');
+    totalQuantity = 0 ;
+
+
+    productLocalStorage.forEach(e => {
+        totalQuantity += Number(e.quantityItem)
+     articleQuantity.innerHTML = totalQuantity
+    });
+
+console.log(totalQuantity)
