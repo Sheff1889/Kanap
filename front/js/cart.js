@@ -329,3 +329,15 @@ function getForm() {
 
  }
     getForm();
+
+
+
+
+       //If cart is empty, order button is disabled
+disableOrder();
+function disableOrder() {
+  if (!productLocalStorage || productLocalStorage.length === 0) {
+    order.setAttribute("disabled", true);
+    order.style.cursor = "not-allowed";
+  } 
+}
